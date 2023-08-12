@@ -1,6 +1,3 @@
-// Import stylesheets
-// import './style.css';
-
 const form: HTMLFormElement = document.querySelector('#defineform');
 
 form.onsubmit = async (event) => {
@@ -16,11 +13,13 @@ form.onsubmit = async (event) => {
     const definitionList: HTMLUListElement = document.querySelector('#definitionList');
     definitionList.innerHTML = ''; // Clear previous definitions
 
-    data[0].meanings.forEach((meaning) => {
-      meaning.definitions.forEach((definition) => {
-        const li = document.createElement('li');
-        li.textContent = definition.definition;
-        definitionList.appendChild(li);
+    data.forEach((wordData) => {
+      wordData.meanings.forEach((meaning) => {
+        meaning.definitions.forEach((definition) => {
+          const li = document.createElement('li');
+          li.textContent = definition.definition;
+          definitionList.appendChild(li);
+        });
       });
     });
   } catch (error) {
